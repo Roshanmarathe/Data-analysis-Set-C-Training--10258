@@ -2,16 +2,6 @@
 
 <img src="assets/hero.svg" alt="Training Performance Analysis — Data Analysis Practical Exam, Set C, by Roshan Marathe" width="100%">
 
-<br>
-
-[(https://github.com/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID/actions/workflows/validate.yml/badge.svg)](https://github.com/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID/actions/workflows/validate.yml)
-![Last commit](https://img.shields.io/github/last-commit/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID?label=last%20commit&color=ff4d5a)
-![Excel](https://img.shields.io/badge/Excel-XLOOKUP%20%7C%20PivotTable-217346?logo=microsoftexcel&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-9.6.0-4479A1?logo=mysql&logoColor=white)
-![Python](https://img.shields.io/badge/Python-pandas%20%7C%20matplotlib-3776AB?logo=python&logoColor=white)
-![Power BI](https://img.shields.io/badge/Power%20BI-DAX%20%7C%20Dashboard-F2C811?logo=powerbi&logoColor=black)
-![Data](https://img.shields.io/badge/records-12%20clean%20(13%20raw)-blue)
-![Reconciled](https://img.shields.io/badge/cross--tool%20reconciliation-passed-brightgreen)
 
 *Which course needs the most academic support — and how does performance differ across batches?*
 
