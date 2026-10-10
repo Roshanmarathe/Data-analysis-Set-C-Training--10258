@@ -1,0 +1,831 @@
+<div align="center">
+
+# 🎓 Training Performance Analysis
+### Data Analysis Practical Exam · **Set C** · Red & White Skill Education
+
+*Which course needs the most academic support — and how does performance differ across batches?*
+
+![Excel](https://img.shields.io/badge/Excel-XLOOKUP%20%7C%20PivotTable-217346?logo=microsoftexcel&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-9.6.0-4479A1?logo=mysql&logoColor=white)
+![Python](https://img.shields.io/badge/Python-pandas%20%7C%20matplotlib-3776AB?logo=python&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power%20BI-DAX%20%7C%20Dashboard-F2C811?logo=powerbi&logoColor=black)
+![Data](https://img.shields.io/badge/records-12%20clean%20(13%20raw)-blue)
+![Reconciled](https://img.shields.io/badge/cross--tool%20reconciliation-passed-brightgreen)
+
+</div>
+
+| | |
+|---|---|
+| **Student name** | Roshan Marathe |
+| **Student ID** | `10258` |
+| **Assigned set** | **Set C** — Training Performance Analysis |
+| **Repository** | `data-analysis-set-c-10258` |
+| **Video walkthrough** | [`VIDEO_URL`](VIDEO_URL) · duration `MM:SS` |
+
+---
+
+## 📑 Table of Contents
+
+1. [Executive Summary](#1--executive-summary)
+2. [Business Objective & Questions](#2--business-objective--questions)
+3. [Dataset & Data Dictionary](#3--dataset--data-dictionary)
+4. [Cleaning Steps & Metric Definitions](#4--cleaning-steps--metric-definitions)
+5. [Repository Structure](#5--repository-structure)
+6. [Tools & Versions](#6--tools--versions)
+7. [Quick Start — Reproduce Everything](#7--quick-start--reproduce-everything)
+8. [📗 Module 1 — Excel](#8--module-1--excel)
+9. [🗄 Module 2 — SQL (MySQL)](#9--module-2--sql-mysql)
+10. [🐍 Module 3 — Python](#10--module-3--python)
+11. [📊 Module 4 — Power BI](#11--module-4--power-bi)
+12. [Findings & Recommendation](#12--findings--recommendation)
+13. [Cross-Tool Reconciliation](#13--cross-tool-reconciliation)
+14. [Video Walkthrough](#14--video-walkthrough)
+15. [Where to Find the Evidence (Marking Map)](#15--where-to-find-the-evidence-marking-map)
+16. [References & Authorship](#16--references--authorship)
+
+---
+
+## 1. 🎯 Executive Summary
+
+A training institute recorded **13 assessment rows** (one is an exact duplicate) across four courses, three batches and three months. The same cleaned dataset (**12 unique records**) was analysed independently in **Excel, MySQL, Python and Power BI**, and every headline number was reconciled across all four tools.
+
+<div align="center">
+
+| 📋 Assessments | 📈 Avg Score | ✅ Pass Rate | 👥 Avg Attendance |
+|:---:|:---:|:---:|:---:|
+| **12** | **61.50** | **66.67 %** (8 of 12) | **81.67 %** |
+
+</div>
+
+> [!IMPORTANT]
+> **Answer 1 — Course needing the most support: `Python`** — lowest average score (**49.33**) and lowest pass rate (**33.33 %**, 1 of 3 assessments passed). No other course ties for the lowest value.
+>
+> **Answer 2 — Batch differences: `Evening` performs best (67.00), `Weekend` worst (56.25)** — a **10.75-point gap**. Weekend is also the only batch with a 50.00 % pass rate and the lowest attendance (75.75 %).
+
+```mermaid
+flowchart LR
+    A["assessments.csv<br/>13 rows"] --> C["Remove 1 exact duplicate<br/>→ 12 unique rows"]
+    B["courses.csv<br/>4 rows"] --> D["Join on course_id<br/>(1 course → many assessments)"]
+    C --> D
+    D --> E1["📗 Excel"]
+    D --> E2["🗄 MySQL"]
+    D --> E3["🐍 Python"]
+    D --> E4["📊 Power BI"]
+    E1 --> F["✅ Cross-tool reconciliation"]
+    E2 --> F
+    E3 --> F
+    E4 --> F
+    F --> G["📌 Findings & recommendation"]
+```
+
+---
+
+## 2. 🧭 Business Objective & Questions
+
+**Objective:** identify where the institute should direct academic support, using a single, validated dataset and four independent analytical tools.
+
+| # | Business question | Answer | Evidence |
+|:-:|---|---|---|
+| **Q1** | Which course needs the most academic support? | **Python** (Technology) | Lowest avg score **49.33** & lowest pass rate **33.33 %** (1/3) — [§10](#10--module-3--python), [§9 S2b](#s2b--underperforming-courses) |
+| **Q2** | How does performance differ across batches? | **Evening 67.00 › Morning 61.25 › Weekend 56.25** | [§9 S2c](#s2c--top-two-batches-by-average-score), [§11](#11--module-4--power-bi) slicer test |
+
+### Course ranking — *most support needed first*
+
+| Priority | Course | Department | Assessments | Avg Score | Passed | Pass Rate | Avg Attendance | Score profile |
+|:-:|---|---|:-:|:-:|:-:|:-:|:-:|---|
+| 1 | **Python** | Technology | 3 | **49.33** | 1 / 3 | **33.33 %** | 71.00 % | `████████████` |
+| 2 | PowerBI | Business | 3 | 53.33 | 2 / 3 | 66.67 % | 77.33 % | `█████████████` |
+| 3 | SQL | Technology | 3 | 62.67 | 2 / 3 | 66.67 % | 84.00 % | `████████████████` |
+| 4 | Excel | Business | 3 | 80.67 | 3 / 3 | 100.00 % | 94.33 % | `████████████████████` |
+
+### Batch ranking
+
+| Rank | Batch | Assessments | Avg Score | Passed | Pass Rate | Avg Attendance | Score profile |
+|:-:|---|:-:|:-:|:-:|:-:|:-:|---|
+| 1 | **Evening** | 4 | **67.00** | 3 / 4 | 75.00 % | 86.25 % | `█████████████████` |
+| 2 | Morning | 4 | 61.25 | 3 / 4 | 75.00 % | 83.00 % | `███████████████` |
+| 3 | **Weekend** | 4 | **56.25** | 2 / 4 | **50.00 %** | 75.75 % | `██████████████` |
+
+*Bars are scaled 1 block = 4 score points. Pass rates are computed from underlying counts (passed ÷ total), never by averaging subgroup percentages.*
+
+---
+
+## 3. 🗂 Dataset & Data Dictionary
+
+Synthetic datasets supplied with the exam — no external data was used.
+
+| File | Location | Rows | Role |
+|---|---|:-:|---|
+| `assessments.csv` | `data/raw/` | **13** (12 unique + 1 duplicate) | **Fact table** — one row per assessment |
+| `courses.csv` | `data/raw/` | **4** | **Lookup table** — one row per course |
+
+> The raw files are preserved **exactly as supplied**. All cleaning happens downstream in each tool.
+
+```mermaid
+erDiagram
+    COURSES ||--o{ ASSESSMENTS : "course_id (1 → many)"
+    COURSES {
+        string course_id PK
+        string course
+        string department
+    }
+    ASSESSMENTS {
+        int assessment_id PK
+        string month
+        string course_id FK
+        string batch
+        decimal score
+        decimal attendance_pct
+    }
+```
+
+### `assessments.csv` — fact table
+
+| Column | Type | Meaning | Allowed values / range |
+|---|---|---|---|
+| `assessment_id` | integer | Unique id of the assessment record | 1 – 12 |
+| `month` | text (ordered) | Month the assessment took place | `Jan` → `Feb` → `Mar` |
+| `course_id` | text | Foreign key to `courses.course_id` | `C1` – `C4` |
+| `batch` | text | Class timing group | `Morning`, `Evening`, `Weekend` |
+| `score` | numeric | Assessment score | 0 – 100 (observed 38 – 90) |
+| `attendance_pct` | numeric | Attendance percentage | 0 – 100 (observed 60 – 98) |
+
+### `courses.csv` — lookup table
+
+| Column | Type | Meaning | Values |
+|---|---|---|---|
+| `course_id` | text (PK) | Lookup key | `C1` Excel · `C2` PowerBI · `C3` SQL · `C4` Python |
+| `course` | text | Course name | Excel, PowerBI, SQL, Python |
+| `department` | text | Owning department | `Business` (C1, C2) · `Technology` (C3, C4) |
+
+### Derived fields
+
+| Field | Defined in | Rule |
+|---|---|---|
+| `department`, `course` | all tools | Looked up from `courses` using `course_id` as the key |
+| `pass_flag` | Excel, Python | `1` if `score >= 50`, else `0` — **a score of exactly 50 is a pass** |
+
+### Data-quality checks
+
+| Check | Result |
+|---|---|
+| Raw fact rows | **13** |
+| Exact duplicate rows | **1** — `12,Mar,C4,Weekend,42,65` appears twice |
+| Clean fact rows | **12** (all `assessment_id` 1–12 unique) |
+| Missing values | **0** in every column |
+| Unmatched `course_id` keys (fact → lookup) | **0** (verified in SQL S3/S3b, Python assertion, Excel XLOOKUP, Power BI relationship) |
+| Scores / attendance on 0–100 scale | ✅ |
+| Month order | Jan → Feb → Mar preserved in every pivot and chart |
+
+---
+
+## 4. 🧹 Cleaning Steps & Metric Definitions
+
+### Cleaning steps (identical logic in all four tools)
+
+1. **Load** the two raw files unchanged (13 + 4 rows).
+2. **Set data types** — `assessment_id` integer; `score`, `attendance_pct` numeric; `month`, `course_id`, `batch`, `course`, `department` text.
+3. **Remove the exact duplicate** (`assessment_id = 12` appears twice) → **13 → 12 rows**.
+4. **Join** `assessments` ➜ `courses` on `course_id` (left join / lookup).
+5. **Validate** the join: 12 rows remain and **0** rows have a missing department.
+6. **Derive** `pass_flag = 1 if score >= 50 else 0` (Excel & Python); Power BI/SQL apply the same `>= 50` rule inside their measures/queries.
+
+| Tool | How the duplicate is removed | Before → After |
+|---|---|:-:|
+| Excel | Duplicate row omitted from the `Clean` sheet; counts shown with `=ROWS()` | 13 → 12 |
+| MySQL | Duplicate excluded at load time in `setup.sql` | 12 rows inserted |
+| Python | `assessments.drop_duplicates()` | 13 → 12 |
+| Power BI | Power Query ➜ **Remove Duplicates** (`Table.Distinct`) | 13 → 12 |
+
+### Metric definitions
+
+| Metric | Definition |
+|---|---|
+| **Assessment Count** | Number of assessment rows in the current filter context |
+| **Average Score** | Mean of `score` over the rows in context |
+| **Pass flag** | `score >= 50` → 1, otherwise 0 |
+| **Pass Rate** | `passing assessments ÷ total assessments` — each row is an independent assessment, not a longitudinal student record |
+| **Rounding** | All reported figures use two decimals; rates are calculated from counts, then rounded for display only |
+| **Ties** | Highest/lowest results report *all* tied entities — no ties occurred for lowest course (Python) or top batch (Evening) |
+
+---
+
+## 5. 📁 Repository Structure
+
+```text
+data-analysis-set-c-YOUR-STUDENT-ID/
+├── README.md                         ← you are here
+├── requirements.txt                  ← Python packages
+├── .gitignore                        ← excludes envs, caches, credentials, Office lock files
+│
+├── data/
+│   └── raw/
+│       ├── assessments.csv           ← supplied fact file (13 rows incl. 1 duplicate)
+│       └── courses.csv               ← supplied lookup file (4 rows)
+│
+├── excel/
+│   └── analysis.xlsx                 ← Raw · Lookup · Clean · Summary (live formulas + PivotTable)
+│
+├── sql/
+│   ├── setup.sql                     ← schema + load of 12 fact / 4 lookup rows (run FIRST)
+│   └── queries.sql                   ← S2a · S2b · S2c · S3 (+ S3b, R1 extras) (run SECOND)
+│
+├── python/
+│   └── analysis.ipynb                ← clean → merge → derive → summarise → chart → export
+│
+├── powerbi/
+│   └── dashboard.pbix                ← Power Query · model · 3 DAX measures · 1 report page
+│
+└── outputs/
+    ├── clean_data.csv                ← merged 12-row clean dataset (Python)
+    ├── python_summary.csv            ← department pass-rate summary (Python)
+    ├── python_chart.png              ← monthly average score chart (Python)
+    ├── powerbi_dashboard.png         ← unfiltered report page screenshot (Power BI)
+    ├── sql/                          ← saved results of every query
+    │   ├── s2a_avg_score_by_department.csv
+    │   ├── s2b_underperforming_courses.csv
+    │   ├── s2c_top_two_batches_by_avg_score.csv
+    │   ├── s3_data_integrity_check.csv
+    │   ├── s3b_orphan_fact_keys_check.csv
+    │   └── r1_overall_pass_rate_reconciliation.csv
+    └── screenshots/                  ← Excel & Power BI evidence images used in this README
+```
+
+---
+
+## 6. 🛠 Tools & Versions
+
+| Tool | Version / detail |
+|---|---|
+| **Microsoft Excel** | Microsoft 365 (uses `XLOOKUP`, `COUNTIFS`, PivotTable) — *Help ▸ About for build* |
+| **Power BI Desktop** | 2026 release (report theme `Fluent2-CY26SU08`) — *Help ▸ About for exact build* |
+| **SQL engine** | **MySQL 9.6.0** (dialect and version also stated at the top of `setup.sql` and `queries.sql`) |
+| **Python** | 3.13.5 (Anaconda base environment) |
+| **Python packages** | `pandas`, `numpy`, `matplotlib`, `jupyterlab` — see [`requirements.txt`](requirements.txt) |
+| **Version control** | Git / GitHub |
+| **Video** | Screen + webcam recording (hosted link in the header table) |
+
+Print your own package versions any time:
+
+```bash
+python -c "import pandas, numpy, matplotlib; print(pandas.__version__, numpy.__version__, matplotlib.__version__)"
+```
+
+---
+
+## 7. ⚡ Quick Start — Reproduce Everything
+
+Run the commands from the **repository root**.
+
+```bash
+# 0 · Clone
+git clone https://github.com/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID.git
+cd data-analysis-set-c-YOUR-STUDENT-ID
+
+# 1 · SQL  (setup FIRST, queries SECOND)
+mysql -u root -p < sql/setup.sql
+mysql -u root -p < sql/queries.sql
+
+# 2 · Python
+python -m venv .venv && source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+jupyter nbconvert --to notebook --execute --inplace python/analysis.ipynb
+```
+
+| Module | Open this file | Notes |
+|---|---|---|
+| 📗 Excel | `excel/analysis.xlsx` | Formulas & PivotTable are live — nothing to configure |
+| 🗄 SQL | `sql/setup.sql` → `sql/queries.sql` | Detailed steps in [§9](#9--module-2--sql-mysql) |
+| 🐍 Python | `python/analysis.ipynb` | Works from repo root **or** from `python/`; details in [§10](#10--module-3--python) |
+| 📊 Power BI | `powerbi/dashboard.pbix` | **Update the two CSV paths after cloning** — [§11](#data-source--refresh-instructions--after-cloning) |
+
+---
+
+## 8. 📗 Module 1 — Excel
+
+**File:** [`excel/analysis.xlsx`](excel/analysis.xlsx) · all calculations are **live formulas**; the PivotTable and chart are editable (no screenshots-only deliverables).
+
+### Sheet guide
+
+| Sheet | What it does | Rows |
+|---|---|:-:|
+| **Raw** | Original `assessments.csv` pasted **unchanged** (duplicate included) | 13 |
+| **Lookup** | Original `courses.csv` — the `course_id → course, department` key | 4 |
+| **Clean** | De-duplicated data + `Department` (XLOOKUP) + `pass_flag` (IF) + before/after row counts | 12 |
+| **Summary** | `COUNTIFS` pass counts by batch · PivotTable (department × month) · column chart | — |
+
+### Formulas used
+
+| Purpose | Cell | Formula |
+|---|:-:|---|
+| Department lookup | `Clean!G2:G13` | `=XLOOKUP(C2, Lookup!$A$2:$A$5, Lookup!$C$2:$C$5)` |
+| Pass flag | `Clean!H2:H13` | `=IF(E2>=50, 1, 0)` |
+| Row count **before** | `Clean!C17` | `=ROWS(Raw!A2:F14)` → **13** |
+| Row count **after** | `Clean!E17` | `=ROWS(A2:H13)` → **12** |
+| Passing assessments per batch | `Summary!B2:B4` | `=COUNTIFS(Clean!D:D, A2, Clean!H:H, 1)` |
+
+### E1 — Import & cleaning · output
+
+| Before (Raw) | After (Clean) | Duplicate removed |
+|:-:|:-:|---|
+| **13** rows | **12** rows | `12, Mar, C4, Weekend, 42, 65` |
+
+<p align="center">
+  <img src="outputs/screenshots/excel_01_raw_clean_sheets.png" width="900" alt="Excel Raw sheet (13 rows) next to Clean sheet (12 rows) with before/after counts">
+</p>
+<p align="center"><em>Figure 8.1 — Raw (13 rows) vs Clean (12 rows) with the before/after row-count block.</em></p>
+<!-- 📸 SCREENSHOT → save as outputs/screenshots/excel_01_raw_clean_sheets.png -->
+
+### E2 — Derived field & batch summary · output
+
+`pass_flag` is applied to all 12 rows. `COUNTIFS` result (passing assessments by batch):
+
+| Batch | Passing assessments | Total | Pass rate |
+|---|:-:|:-:|:-:|
+| Morning | **3** | 4 | 75.00 % |
+| Evening | **3** | 4 | 75.00 % |
+| Weekend | **2** | 4 | 50.00 % |
+| **Total** | **8** | **12** | **66.67 %** |
+
+<p align="center">
+  <img src="outputs/screenshots/excel_02_formulas.png" width="900" alt="Excel formula bar showing XLOOKUP and IF pass_flag formulas">
+</p>
+<p align="center"><em>Figure 8.2 — Live <code>XLOOKUP</code> and <code>IF</code> formulas in the Clean sheet.</em></p>
+<!-- 📸 SCREENSHOT → save as outputs/screenshots/excel_02_formulas.png -->
+
+### E3 — PivotTable & chart · output
+
+**PivotTable** — *Average of score*, rows = **department**, columns = **month** (Jan → Feb → Mar):
+
+| Department | Jan | Feb | Mar | **Grand Total** |
+|---|:-:|:-:|:-:|:-:|
+| Business | 58.50 | 67.50 | 75.00 | **67.00** |
+| Technology | 51.50 | 58.00 | 58.50 | **56.00** |
+| **Grand Total** | **55.00** | **62.75** | **66.75** | **61.50** |
+
+**Chart** — clustered column chart built from the PivotTable, placed on the `Summary` sheet: title *Avg Score By Department*, category axis **Department**, value axis **Average Score**, legend showing **Jan / Feb / Mar**.
+
+<p align="center">
+  <img src="outputs/screenshots/excel_03_summary_pivot_chart.png" width="900" alt="Excel Summary sheet with COUNTIFS table, PivotTable and column chart">
+</p>
+<p align="center"><em>Figure 8.3 — Summary sheet: COUNTIFS table, PivotTable and chart.</em></p>
+<!-- 📸 SCREENSHOT → save as outputs/screenshots/excel_03_summary_pivot_chart.png -->
+
+**Excel takeaways:** Business outscores Technology in every month; both departments improve from January to March; the overall monthly average rises **55.00 → 62.75 → 66.75**.
+
+---
+
+## 9. 🗄 Module 2 — SQL (MySQL)
+
+| Item | Value |
+|---|---|
+| **SQL dialect** | MySQL |
+| **Server version** | **9.6.0** |
+| **Database** | `training_performance` |
+| **Files** | [`sql/setup.sql`](sql/setup.sql) · [`sql/queries.sql`](sql/queries.sql) |
+| **Saved results** | [`outputs/sql/`](outputs/sql/) |
+
+### Query execution order
+
+| Step | File | What happens | Expected |
+|:-:|---|---|---|
+| 1 | `sql/setup.sql` | Creates DB, drops/creates tables, loads data | `courses = 4`, `assessments = 12` |
+| 2 | `sql/queries.sql` | S2a → S2b → S2c → S3 (+ S3b, R1) | results below |
+
+```bash
+mysql -u root -p < sql/setup.sql
+mysql -u root -p < sql/queries.sql
+```
+
+*MySQL Workbench alternative:* **File ▸ Open SQL Script** → run `setup.sql`, then `queries.sql`; export each result grid via **Export ▸ CSV** into `outputs/sql/`.
+
+### S1 — Table definitions & data load
+
+```sql
+CREATE TABLE courses (
+    course_id   VARCHAR(10) PRIMARY KEY,
+    course      VARCHAR(50) NOT NULL,
+    department  VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE assessments (
+    assessment_id   INT PRIMARY KEY,
+    month           VARCHAR(10)  NOT NULL,
+    course_id       VARCHAR(10)  NOT NULL,
+    batch           VARCHAR(20)  NOT NULL,
+    score           DECIMAL(5,2) NOT NULL,
+    attendance_pct  DECIMAL(5,2) NOT NULL,
+    CONSTRAINT fk_assessments_course
+        FOREIGN KEY (course_id) REFERENCES courses (course_id)
+);
+```
+
+| Design decision | Why |
+|---|---|
+| `PRIMARY KEY` on `assessment_id` / `course_id` | Blocks the duplicate row from ever being inserted twice |
+| `FOREIGN KEY assessments.course_id → courses.course_id` | Guarantees referential integrity (zero unmatched keys) |
+| `DECIMAL(5,2)` for score & attendance | Exact two-decimal numerics on a 0–100 scale — no floating-point drift |
+| `DROP TABLE IF EXISTS` (child first) | `setup.sql` is re-runnable from any state |
+| Inserts **12 + 4** rows | Duplicate excluded at load time; values copied exactly from `data/raw/` |
+
+### S2a — Average score by department
+
+```sql
+SELECT c.department, ROUND(AVG(a.score), 2) AS avg_score
+FROM assessments AS a
+JOIN courses     AS c ON a.course_id = c.course_id
+GROUP BY c.department
+ORDER BY AVG(a.score) ASC;          -- lowest first = highlights under-performance
+```
+
+| department | avg_score |
+|---|:-:|
+| Technology | **56.00** |
+| Business | **67.00** |
+
+📄 `outputs/sql/s2a_avg_score_by_department.csv`
+
+### S2b — Underperforming courses
+
+```sql
+SELECT c.course, ROUND(AVG(a.score), 2) AS avg_score
+FROM assessments AS a
+JOIN courses     AS c ON a.course_id = c.course_id
+GROUP BY c.course
+HAVING AVG(a.score) < 60
+ORDER BY AVG(a.score) ASC;
+```
+
+| course | avg_score |
+|---|:-:|
+| Python | **49.33** |
+| PowerBI | **53.33** |
+
+📄 `outputs/sql/s2b_underperforming_courses.csv` — `HAVING` filters *after* aggregation, so the threshold applies to each course's mean, not to individual rows. Excel (80.67) and SQL (62.67) stay above 60.
+
+### S2c — Top two batches by average score
+
+```sql
+SELECT batch, ROUND(AVG(score), 2) AS avg_score
+FROM assessments
+GROUP BY batch
+ORDER BY AVG(score) DESC, batch ASC     -- ties broken alphabetically
+LIMIT 2;
+```
+
+| batch | avg_score |
+|---|:-:|
+| Evening | **67.00** |
+| Morning | **61.25** |
+
+📄 `outputs/sql/s2c_top_two_batches_by_avg_score.csv` — Weekend (56.25) is third. No tie occurred, so the alphabetical rule was not triggered.
+
+### S3 — Data integrity check
+
+```sql
+SELECT c.course_id, c.course, a.assessment_id
+FROM courses AS c
+LEFT JOIN assessments AS a ON c.course_id = a.course_id
+WHERE a.course_id IS NULL;
+```
+
+**Result: empty set (0 rows)** → every course in the lookup is matched by assessments; nothing is orphaned. 📄 `outputs/sql/s3_data_integrity_check.csv`
+
+<details>
+<summary><strong>Extra checks (S3b, R1)</strong></summary>
+
+| Query | Purpose | Result |
+|---|---|---|
+| **S3b** — `assessments LEFT JOIN courses … WHERE c.course_id IS NULL` | Direction the brief cares about: any fact `course_id` **without** a lookup row? | **0 rows** ✅ |
+| **R1** — `COUNT(*)`, `SUM(score >= 50)`, `ROUND(100.0 * SUM(score >= 50) / COUNT(*), 2)` | Overall pass rate for the [reconciliation](#13--cross-tool-reconciliation) | `12 · 8 · 66.67` ✅ |
+
+</details>
+
+---
+
+## 10. 🐍 Module 3 — Python
+
+**File:** [`python/analysis.ipynb`](python/analysis.ipynb) — pandas + matplotlib. All paths are **relative to the repository root** (the first cell switches into the root automatically if the notebook is launched from `python/`).
+
+### Environment & run instructions
+
+```bash
+python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+
+jupyter lab python/analysis.ipynb                      # Kernel ▸ Restart & Run All
+# …or headless, from the repo root:
+jupyter nbconvert --to notebook --execute --inplace python/analysis.ipynb
+```
+
+### Pipeline
+
+| Step | Rubric | Code | Printed output |
+|---|:-:|---|---|
+| Load with relative paths | P1 | `pd.read_csv('data/raw/assessments.csv')` | `assessments: (13, 6)` · `courses: (4, 3)` |
+| Confirm numeric types | P1 | `assessments[['score','attendance_pct']].dtypes` | both `int64` |
+| Remove exact duplicate | P1 | `assessments.drop_duplicates()` | `Before : 13` → `After: 12` |
+| Left-join merge | P1 | `assessments.merge(courses, on='course_id', how='left')` | shape `(12, 8)` |
+| Assert integrity | P1 | `assert len(merged) == 12` · `assert merged['department'].isna().sum() == 0` | `All course_id values matched.` |
+| Derive `pass_flag` | P2 | `(merged['score'] >= 50).astype(int)` | 8 ones, 4 zeros |
+| Department summary | P2 | `groupby('department').agg(...)` | table below |
+| Lowest-pass-rate course | P2 | `course_summary['pass_rate'].idxmin()` | **Python — 1 passed of 3** |
+| Monthly chart (Jan→Feb→Mar) | P3 | `reindex(['Jan','Feb','Mar'])` → bar chart | saved PNG |
+| Exports | P3 | `to_csv(...)` | 2 CSV files |
+
+### P2 — Department summary (`outputs/python_summary.csv`)
+
+| department | total_assessments | passed | pass_rate (%) |
+|---|:-:|:-:|:-:|
+| Business | 6 | 5 | **83.33** |
+| Technology | 6 | 3 | **50.00** |
+
+### P2 — Course summary & the lowest pass rate
+
+| course | total | passed | pass_rate (%) |
+|---|:-:|:-:|:-:|
+| Excel | 3 | 3 | 100.00 |
+| PowerBI | 3 | 2 | 66.67 |
+| **Python** | **3** | **1** | **33.33** ← lowest |
+| SQL | 3 | 2 | 66.67 |
+
+```text
+Lowest pass rate course: Python
+Passing count: 1
+Total assessments: 3
+```
+
+**Numerator = 1 passing assessment** (Feb · Evening · score 68) **· Denominator = 3 Python assessments** (scores 38, 68, 42) → **1 ÷ 3 = 33.33 %**. No other course shares the lowest rate.
+
+### P3 — Chart
+
+<p align="center">
+  <img src="outputs/python_chart.png" width="520" alt="Monthly Average Score bar chart: Jan 55.00, Feb 62.75, Mar 66.75">
+</p>
+
+| Month | Jan | Feb | Mar |
+|---|:-:|:-:|:-:|
+| **Avg score** | 55.00 | 62.75 | 66.75 |
+
+### P3 — Exports
+
+| File | Content | Rows |
+|---|---|:-:|
+| [`outputs/clean_data.csv`](outputs/clean_data.csv) | Merged clean dataset with `course`, `department`, `pass_flag` | 12 |
+| [`outputs/python_summary.csv`](outputs/python_summary.csv) | Department count / passed / pass-rate summary | 2 |
+| [`outputs/python_chart.png`](outputs/python_chart.png) | Labeled monthly average-score chart | — |
+
+A final helper cell prints `Business 67.00 · Technology 56.00` (average score by department) and `Overall pass rate: 8 / 12 = 66.67%` for the [reconciliation](#13--cross-tool-reconciliation). The committed notebook contains **all executed outputs**.
+
+---
+
+## 11. 📊 Module 4 — Power BI
+
+**File:** [`powerbi/dashboard.pbix`](powerbi/dashboard.pbix) · one report page, **Training Performance Analysis Dashboard** (1920 × 1080).
+
+<p align="center">
+  <img src="outputs/powerbi_dashboard.png" width="950" alt="Power BI dashboard: KPI cards, department bar chart, monthly trend line chart and batch slicer (unfiltered)">
+</p>
+<p align="center"><em>Figure 11.1 — Completed report page, <strong>unfiltered</strong> state.</em></p>
+<!-- 📸 SCREENSHOT → save as outputs/powerbi_dashboard.png  (required by the exam) -->
+
+### B1 — Power Query & data model
+
+**Power Query (applied steps)**
+
+| Query | Steps | Result |
+|---|---|---|
+| `assessments` | Source (CSV) → Promoted Headers → **Changed Type** (`assessment_id`, `score`, `attendance_pct` = Whole Number; `month`, `course_id`, `batch` = Text) → **Removed Duplicates** | **12 rows** |
+| `courses` | Source (CSV) → Changed Type (all Text) → Renamed Columns → Removed Top Rows (header row) | **4 rows** |
+
+<p align="center">
+  <img src="outputs/screenshots/powerbi_01_power_query.png" width="900" alt="Power Query Editor showing Applied Steps with Removed Duplicates">
+</p>
+<p align="center"><em>Figure 11.2 — Power Query Editor: applied steps incl. <em>Removed Duplicates</em> (12 rows).</em></p>
+<!-- 📸 SCREENSHOT → save as outputs/screenshots/powerbi_01_power_query.png -->
+
+**Data model**
+
+| From | To | Cardinality | Filter direction | Active |
+|---|---|:-:|:-:|:-:|
+| `courses[course_id]` | `assessments[course_id]` | **1 : many** | Single (courses → assessments) | ✅ |
+| `Dim_Date[Month]` | `assessments[month]` | **1 : many** | Single (Dim_Date → assessments) | ✅ |
+
+`Dim_Date` is a small calculated table (`Jan 1 · Feb 2 · Mar 3`) whose **Month** column is *sorted by Month Number*, which keeps every chart in true Jan → Feb → Mar order. `Measure` is the dedicated measures table.
+
+```mermaid
+erDiagram
+    courses ||--o{ assessments : "course_id"
+    Dim_Date ||--o{ assessments : "Month = month"
+```
+
+<p align="center">
+  <img src="outputs/screenshots/powerbi_02_model_view.png" width="800" alt="Power BI Model view with relationships">
+</p>
+<p align="center"><em>Figure 11.3 — Model view: single-direction one-to-many relationships.</em></p>
+<!-- 📸 SCREENSHOT → save as outputs/screenshots/powerbi_02_model_view.png -->
+
+### B2 — DAX measures (table `Measure`)
+
+```dax
+Assessment Count = COUNTROWS ( assessments )
+
+Avg Score        = AVERAGE ( assessments[score] )
+
+Pass Rate        = DIVIDE (
+                       CALCULATE ( COUNTROWS ( assessments ), assessments[score] >= 50 ),
+                       COUNTROWS ( assessments )
+                   )                                   // returned as a decimal, formatted 0.00 %
+```
+
+All three are **explicit measures**, so they respond to every slicer, cross-filter and visual filter on the page. `Pass Rate` is equivalent to the brief's `DIVIDE(COUNTROWS(FILTER(assessments, assessments[score] >= 50)), COUNTROWS(assessments), 0)` — both count rows with `score >= 50` ÷ all rows.
+
+<p align="center">
+  <img src="outputs/screenshots/powerbi_03_dax_measures.png" width="800" alt="Power BI DAX measures in the Measure table">
+</p>
+<p align="center"><em>Figure 11.4 — The three DAX measures in the dedicated measures table.</em></p>
+<!-- 📸 SCREENSHOT → save as outputs/screenshots/powerbi_03_dax_measures.png -->
+
+### B3 — Report page
+
+| # | Element | Fields | Purpose |
+|:-:|---|---|---|
+| 1 | **KPI card** | `Assessment Count` | Volume of assessments in context |
+| 2 | **KPI card** | `Avg Score` (2 decimals) | Mean score |
+| 3 | **KPI card** | `Pass Rate` (`0.00 %`) | Share of passing assessments |
+| 4 | **Clustered column chart** | Axis `courses[department]` · Values `Avg Score`, `Pass Rate` | Department comparison |
+| 5 | **Monthly trend (line)** | Axis `Dim_Date[Month]` · Values `Avg Score` | Jan → Feb → Mar trend |
+| 6 | **Batch slicer** | `assessments[batch]` | Filters **all** cards and charts simultaneously |
+| 7 | Title & logo | Text box · image | Branding / readability |
+
+### Slicer demonstration (filtered-state test)
+
+Selecting a batch re-computes every card and chart. Card values recorded for the test (Weekend) and for the other states:
+
+| Slicer state | Assessment Count | Avg Score | Pass Rate |
+|---|:-:|:-:|:-:|
+| **None (cleared / unfiltered)** | **12** | **61.50** | **66.67 %** |
+| **Weekend** *(tested state)* | 4 | 56.25 | 50.00 % |
+| Morning | 4 | 61.25 | 75.00 % |
+| Evening | 4 | 67.00 | 75.00 % |
+
+<p align="center">
+  <img src="outputs/screenshots/powerbi_04_slicer_weekend.png" width="950" alt="Power BI dashboard with the Weekend batch selected">
+</p>
+<p align="center"><em>Figure 11.5 — Filtered state (Weekend): all cards and charts update; filter then cleared to return to the unfiltered view in Figure 11.1.</em></p>
+<!-- 📸 SCREENSHOT → save as outputs/screenshots/powerbi_04_slicer_weekend.png -->
+
+### Findings read from the unfiltered report
+
+1. **Technology averages 56.00 vs Business 67.00** — an 11.00-point gap; pass rate **50.00 % vs 83.33 %**.
+2. **Overall pass rate is 66.67 % (8 of 12)** with an average score of **61.50**; the monthly trend climbs **55.00 → 62.75 → 66.75**.
+
+**Recommendation:** see [§12](#12--findings--recommendation).
+
+### Data source & refresh instructions — *after cloning*
+
+Power BI stores **absolute file paths**, so the two CSV sources must be re-pointed once on every new computer.
+
+| Query | Point it to |
+|---|---|
+| `assessments` | `<your-clone-folder>\data\raw\assessments.csv` |
+| `courses` | `<your-clone-folder>\data\raw\courses.csv` |
+
+1. Open `powerbi/dashboard.pbix` in Power BI Desktop (Windows).
+2. **Home ▸ Transform data ▸ Data source settings**.
+3. Select the first CSV ▸ **Change Source…** ▸ **Browse** to `data\raw\assessments.csv` ▸ **OK**. Repeat for `courses.csv`.
+4. **Close** ▸ **Apply changes**, then **Home ▸ Refresh**.
+5. Verify the cards read **12 · 61.50 · 66.67 %** with no filters applied.
+
+*Alternative:* Power Query Editor ▸ select the query ▸ **Advanced Editor** ▸ edit the `File.Contents("…")` path.
+
+---
+
+## 12. 📌 Findings & Recommendation
+
+### Two numeric findings
+
+| # | Finding | Numbers |
+|:-:|---|---|
+| **F1** | **Python is the weakest course** on both measures | Average score **49.33** (all-course mean 61.50); pass rate **33.33 %** — only **1 of 3** assessments passed |
+| **F2** | **Weekend is the weakest batch; Evening the strongest** | Weekend avg **56.25** (pass rate 50.00 %) vs Evening **67.00** — a **10.75-point** gap |
+
+### Supporting observations
+
+- **Department gap:** Technology **56.00** vs Business **67.00**; Technology's two courses (Python 49.33, SQL 62.67) both sit below Excel (80.67).
+- **Python's problem is concentrated in the Weekend batch:** both Weekend Python assessments failed (**38** and **42**, mean **40.00**), while the Evening Python assessment passed (**68**).
+- **Trend is positive:** the monthly average rises from **55.00** (Jan) to **66.75** (Mar), **+11.75 points**.
+- **Attendance moves with score:** Weekend has the lowest attendance (**75.75 %**) and Evening the highest (**86.25 %**); across the 12 records the score–attendance correlation is **r ≈ 0.98** *(descriptive only — see limitation)*.
+
+### ✅ Recommendation
+
+> **Prioritise academic support for Python, starting with the Weekend batch.** Add structured practice/mentoring sessions and attendance follow-up for Weekend Python learners — both Weekend Python results were failures, with low attendance (60 % and 65 %). Review **PowerBI (avg 53.33)** as the second priority; **Excel (avg 80.67, 100 % pass)** needs no intervention and can serve as the benchmark course.
+
+### ⚠️ Limitation
+
+The dataset is **synthetic and tiny (12 records, 3 per course)** and each course–batch combination has at most **one** assessment, so a *course* effect cannot be separated from a *batch* effect. Each row is an independent assessment (not a student's journey), so the results show **where to look**, not **why** — and the attendance relationship is correlation, not causation. Confirm with a larger, student-level dataset before committing resources.
+
+---
+
+## 13. 🔁 Cross-Tool Reconciliation
+
+Every aggregate below was computed independently in each tool and **matches exactly**.
+
+### A · Technology department — average score = **56.00**
+
+| Tool | Where it comes from | Value |
+|---|---|:-:|
+| 📗 Excel | PivotTable → Technology **Grand Total** | **56.00** |
+| 🗄 SQL | `S2a` → `Technology` row | **56.00** |
+| 🐍 Python | `merged.groupby('department')['score'].mean()` | **56.00** |
+| 📊 Power BI | `Avg Score` card with *Technology* selected in the department chart | **56.00** |
+
+### B · Overall pass rate — **8 / 12 = 66.67 %**
+
+| Tool | Where it comes from | Passing | Total | Rate |
+|---|---|:-:|:-:|:-:|
+| 📗 Excel | `COUNTIFS` by batch: 3 + 3 + 2 | **8** | 12 | 66.67 % |
+| 🗄 SQL | `R1` query | **8** | 12 | 66.67 % |
+| 🐍 Python | `merged['pass_flag'].sum()` of 12 rows | **8** | 12 | 66.67 % |
+| 📊 Power BI | `Pass Rate` card (unfiltered) | — | 12 | 66.67 % |
+
+### C · Technology pass rate — **3 / 6 = 50.00 %** *(Python summary vs Power BI)*
+
+| Python `python_summary.csv` | Power BI card (*Technology*) |
+|:-:|:-:|
+| 3 of 6 → **50.00 %** | **50.00 %** |
+
+### Rounding notes
+
+- **SQL** rounds with `ROUND(AVG(...), 2)` on `DECIMAL(5,2)`; **Python** keeps full precision internally (e.g. `83.333333…`) and rounds to two decimals for export/display.
+- **Excel** PivotTable shows `67` / `56` unless the number format is set to 2 decimals — the underlying values are identical (`67.00`, `56.00`).
+- **Power BI** `Pass Rate` is a decimal (`0.6667`) formatted as **66.67 %**; `Avg Score` is displayed to two decimals.
+- **No rounding differences** affect any reconciled value.
+
+---
+
+## 14. 🎬 Video Walkthrough
+
+| Item | Value |
+|---|---|
+| **Video URL** | [`VIDEO_URL`](VIDEO_URL) *(unlisted YouTube / Google Drive "Anyone with the link can view" — tested in a signed-out window)* |
+| **Duration** | `MM:SS` *(5–10 minutes required)* |
+| **Format** | Webcam overlay + screen recording, face visible throughout |
+
+**Walkthrough outline**
+
+| Time | Segment | Shows |
+|:-:|---|---|
+| 0:00 | Introduction | Name, student ID, **Set C**, business question |
+| 0:45 | Dataset & cleaning | Two files, the duplicate row (13 → 12), key rules |
+| 2:00 | 📗 Excel | `XLOOKUP`, `IF` pass_flag, `COUNTIFS`, PivotTable |
+| 3:30 | 🗄 SQL | One query live (e.g. S2a) + integrity check |
+| 5:00 | 🐍 Python | Merge assertion, `pass_flag`, chart |
+| 6:30 | 📊 Power BI | A DAX measure, batch slicer, reading a card value |
+| 8:30 | Conclusion | Two numeric findings, recommendation, limitation, repo tour |
+
+---
+
+## 15. 🧾 Where to Find the Evidence (Marking Map)
+
+| Criterion | Evidence |
+|---|---|
+| **E1** Import & cleaning (2) | `excel/analysis.xlsx` → `Raw`, `Lookup`, `Clean` (rows 13 → 12, `XLOOKUP`) — [§8](#8--module-1--excel) |
+| **E2** `pass_flag` & `COUNTIFS` (2) | `Clean!H`, `Summary!A1:B4` — [§8](#e2--derived-field--batch-summary--output) |
+| **E3** PivotTable & chart (2) | `Summary` sheet — [§8](#e3--pivottable--chart--output) |
+| **S1** Schema & load (2) | `sql/setup.sql` — [§9](#s1--table-definitions--data-load) |
+| **S2a–c** Queries (3) | `sql/queries.sql` — [§9](#s2a--average-score-by-department) |
+| **S3** Outputs & integrity (1) | `outputs/sql/`, S3 query, README run order — [§9](#s3--data-integrity-check) |
+| **P1** Load, clean, merge (2) | `python/analysis.ipynb` — [§10](#10--module-3--python) |
+| **P2** `pass_flag` & dept analysis (2) | Course summary + lowest course (**1 of 3**) — [§10](#10--module-3--python) |
+| **P3** Chart & exports (2) | `outputs/python_chart.png`, `clean_data.csv`, `python_summary.csv` |
+| **B1** Power Query & model (2) | [§11](#b1--power-query--data-model) |
+| **B2** DAX measures (3) | [§11](#b2--dax-measures-table-measure) |
+| **B3** Report page & screenshot (2) | `outputs/powerbi_dashboard.png`, [§11](#b3--report-page) |
+| **Video** (15) | [§14](#14--video-walkthrough) |
+| **GitHub** (10) | This repository · [§5 structure](#5--repository-structure) · [§7 run steps](#7--quick-start--reproduce-everything) |
+| **Reconciliation** | [§13](#13--cross-tool-reconciliation) |
+
+---
+
+## 16. 📚 References & Authorship
+
+**References**
+
+- Microsoft Learn — [`XLOOKUP`](https://support.microsoft.com/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929), [`COUNTIFS`](https://support.microsoft.com/office/countifs-function-dda3dc6e-f74e-4aee-88bc-aa8c2a866842), [PivotTables](https://support.microsoft.com/office/overview-of-pivottables-and-pivotcharts-527c8fa3-02c0-445a-a2db-7794676bce96)
+- Microsoft Learn — [DAX reference](https://learn.microsoft.com/dax/) (`DIVIDE`, `CALCULATE`, `COUNTROWS`, `AVERAGE`) and [Power Query M](https://learn.microsoft.com/powerquery-m/)
+- MySQL 9.x Reference Manual — [`JOIN`](https://dev.mysql.com/doc/refman/9.0/en/join.html), [`GROUP BY` / `HAVING`](https://dev.mysql.com/doc/refman/9.0/en/group-by-handling.html)
+- pandas documentation — [`merge`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html), [`drop_duplicates`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html), [`groupby`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html)
+- AI assistance: README drafting and formatting support from Claude (Anthropic).
+
+**Authorship declaration**
+
+> All work in this repository is my own except where cited.
+>
+> — Rudra · Student ID `YOUR-STUDENT-ID` · Set C
+
+<div align="center">
+
+*"Quality is our Motto."* · Practical Exam — Data Analysis (Set C)
+
+</div>
