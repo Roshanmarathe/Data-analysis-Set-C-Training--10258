@@ -4,7 +4,7 @@
 
 <br>
 
-[![validate](https://github.com/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID/actions/workflows/validate.yml/badge.svg)](https://github.com/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID/actions/workflows/validate.yml)
+[(https://github.com/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID/actions/workflows/validate.yml/badge.svg)](https://github.com/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID/actions/workflows/validate.yml)
 ![Last commit](https://img.shields.io/github/last-commit/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID?label=last%20commit&color=ff4d5a)
 ![Excel](https://img.shields.io/badge/Excel-XLOOKUP%20%7C%20PivotTable-217346?logo=microsoftexcel&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-9.6.0-4479A1?logo=mysql&logoColor=white)
@@ -23,27 +23,10 @@
 | **Student ID** | `10258` |
 | **Assigned set** | **Set C** — Training Performance Analysis |
 | **Repository** | `data-analysis-set-c-10258` |
-| **Video walkthrough** | [`VIDEO_URL`]https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view?usp=drive_link · duration `12 min` |
+| **Video walkthrough** | ### 📺 Project Demo & Walkthrough (12 min)
 
-<img src="assets/divider.svg" width="100%" height="10" alt="">
-
-## 📑 Table of Contents
-
-1. [Executive Summary](#1--executive-summary)
-2. [Business Objective & Questions](#2--business-objective--questions)
-3. [Dataset & Data Dictionary](#3--dataset--data-dictionary)
-4. [Cleaning Steps & Metric Definitions](#4--cleaning-steps--metric-definitions)
-5. [Repository Structure](#5--repository-structure)
-6. [Tools & Versions](#6--tools--versions)
-7. [Quick Start — Reproduce Everything](#7--quick-start--reproduce-everything)
-8. [📗 Module 1 — Excel](#8--module-1--excel)
-9. [🗄 Module 2 — SQL (MySQL)](#9--module-2--sql-mysql)
-10. [🐍 Module 3 — Python](#10--module-3--python)
-11. [📊 Module 4 — Power BI](#11--module-4--power-bi)
-12. [🔬 Insights, Findings & Recommendation](#12--insights-findings--recommendation)
-13. [🔁 Cross-Tool Reconciliation & Automated Validation](#13--cross-tool-reconciliation--automated-validation)
-14. [🎬 Video Walkthrough](#14--video-walkthrough)
-15. [References & Authorship](#references--authorship) *(closing section)*
+[![Watch the Demo](https://img.youtube.com/vi/placeholder/maxresdefault.jpg)](https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view)
+> 💡 *Click the image above to watch the full 12-minute walkthrough on Google Drive.*
 
 <img src="assets/divider.svg" width="100%" height="10" alt="">
 
@@ -338,12 +321,6 @@ python tests/validate_results.py
 |:-:|:-:|---|
 | **13** rows | **12** rows | `12, Mar, C4, Weekend, 42, 65` |
 
-<p align="center">
-  <img src="outputs/screenshots/excel_01_raw_clean_sheets.png" width="900" alt="Excel Raw sheet (13 rows) next to Clean sheet (12 rows) with before/after counts">
-</p>
-<p align="center"><em>Figure 8.1 — Raw (13 rows) vs Clean (12 rows) with the before/after row-count block.</em></p>
-<!-- 📸 SCREENSHOT → save as outputs/screenshots/excel_01_raw_clean_sheets.png -->
-
 ### E2 — Derived field & batch summary · output
 
 `pass_flag` is applied to all 12 rows. `COUNTIFS` result (passing assessments by batch):
@@ -354,12 +331,6 @@ python tests/validate_results.py
 | Evening | **3** | 4 | 75.00 % |
 | Weekend | **2** | 4 | 50.00 % |
 | **Total** | **8** | **12** | **66.67 %** |
-
-<p align="center">
-  <img src="outputs/screenshots/excel_02_formulas.png" width="900" alt="Excel formula bar showing XLOOKUP and IF pass_flag formulas">
-</p>
-<p align="center"><em>Figure 8.2 — Live <code>XLOOKUP</code> and <code>IF</code> formulas in the Clean sheet.</em></p>
-<!-- 📸 SCREENSHOT → save as outputs/screenshots/excel_02_formulas.png -->
 
 ### E3 — PivotTable & chart · output
 
@@ -377,7 +348,8 @@ python tests/validate_results.py
   <img src="outputs/screenshots/excel_03_summary_pivot_chart.png" width="900" alt="Excel Summary sheet with COUNTIFS table, PivotTable and column chart">
 </p>
 <p align="center"><em>Figure 8.3 — Summary sheet: COUNTIFS table, PivotTable and chart.</em></p>
-<!-- 📸 SCREENSHOT → save as outputs/screenshots/excel_03_summary_pivot_chart.png -->
+<img width="852" height="734" alt="Screenshot 2026-10-10 134743" src="https://github.com/user-attachments/assets/7bfdca6a-b07b-408a-9144-84c98d85d3d3" />
+
 
 **Excel takeaways:** Business outscores Technology in every month; both departments improve from January to March; the overall monthly average rises **55.00 → 62.75 → 66.75**.
 
@@ -601,7 +573,8 @@ A final helper cell prints `Business 67.00 · Technology 56.00` (average score b
   <img src="outputs/powerbi_dashboard.png" width="950" alt="Power BI dashboard: KPI cards, department bar chart, monthly trend line chart and batch slicer (unfiltered)">
 </p>
 <p align="center"><em>Figure 11.1 — Completed report page, <strong>unfiltered</strong> state.</em></p>
-<!-- 📸 SCREENSHOT → save as outputs/powerbi_dashboard.png  (required by the exam) -->
+<img width="1323" height="810" alt="Screenshot 2026-10-10 135047" src="https://github.com/user-attachments/assets/3f6cf76b-cb17-4c66-98e4-390fe237ae27" />
+
 
 ### B1 — Power Query & data model
 
@@ -612,11 +585,6 @@ A final helper cell prints `Business 67.00 · Technology 56.00` (average score b
 | `assessments` | Source (CSV) → Promoted Headers → **Changed Type** (`assessment_id`, `score`, `attendance_pct` = Whole Number; `month`, `course_id`, `batch` = Text) → **Removed Duplicates** | **12 rows** |
 | `courses` | Source (CSV) → Changed Type (all Text) → Renamed Columns → Removed Top Rows (header row) | **4 rows** |
 
-<p align="center">
-  <img src="outputs/screenshots/powerbi_01_power_query.png" width="900" alt="Power Query Editor showing Applied Steps with Removed Duplicates">
-</p>
-<p align="center"><em>Figure 11.2 — Power Query Editor: applied steps incl. <em>Removed Duplicates</em> (12 rows).</em></p>
-<!-- 📸 SCREENSHOT → save as outputs/screenshots/powerbi_01_power_query.png -->
 
 **Data model**
 
@@ -633,11 +601,7 @@ erDiagram
     Dim_Date ||--o{ assessments : "Month = month"
 ```
 
-<p align="center">
-  <img src="outputs/screenshots/powerbi_02_model_view.png" width="800" alt="Power BI Model view with relationships">
-</p>
-<p align="center"><em>Figure 11.3 — Model view: single-direction one-to-many relationships.</em></p>
-<!-- 📸 SCREENSHOT → save as outputs/screenshots/powerbi_02_model_view.png -->
+
 
 ### B2 — DAX measures (table `Measure`)
 
@@ -654,11 +618,6 @@ Pass Rate        = DIVIDE (
 
 All three are **explicit measures**, so they respond to every slicer, cross-filter and visual filter on the page. `Pass Rate` is equivalent to the brief's `DIVIDE(COUNTROWS(FILTER(assessments, assessments[score] >= 50)), COUNTROWS(assessments), 0)` — both count rows with `score >= 50` ÷ all rows.
 
-<p align="center">
-  <img src="outputs/screenshots/powerbi_03_dax_measures.png" width="800" alt="Power BI DAX measures in the Measure table">
-</p>
-<p align="center"><em>Figure 11.4 — The three DAX measures in the dedicated measures table.</em></p>
-<!-- 📸 SCREENSHOT → save as outputs/screenshots/powerbi_03_dax_measures.png -->
 
 ### B3 — Report page
 
@@ -683,11 +642,6 @@ Selecting a batch re-computes every card and chart. Card values recorded for the
 | Morning | 4 | 61.25 | 75.00 % |
 | Evening | 4 | 67.00 | 75.00 % |
 
-<p align="center">
-  <img src="outputs/screenshots/powerbi_04_slicer_weekend.png" width="950" alt="Power BI dashboard with the Weekend batch selected">
-</p>
-<p align="center"><em>Figure 11.5 — Filtered state (Weekend): all cards and charts update; filter then cleared to return to the unfiltered view in Figure 11.1.</em></p>
-<!-- 📸 SCREENSHOT → save as outputs/screenshots/powerbi_04_slicer_weekend.png -->
 
 ### Findings read from the unfiltered report
 
@@ -841,8 +795,11 @@ The same script runs in **GitHub Actions** (`.github/workflows/validate.yml`) af
 
 | Item | Value |
 |---|---|
-| **Video URL** | [`VIDEO_URL`]https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view?usp=drive_link
-| **Duration** | `12 min` *(5–10 minutes required)* |
+| **Video URL** | ### 📺 Project Demo & Walkthrough (12 min)
+
+[![Watch the Demo](https://img.youtube.com/vi/placeholder/maxresdefault.jpg)](https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view)
+> 💡 *Click the image above to watch the full 12-minute walkthrough on Google Drive.*
+| **Duration** | `12 min`|
 | **Format** | Webcam overlay + screen recording, face visible throughout |
 
 **Walkthrough outline**
@@ -873,7 +830,7 @@ The same script runs in **GitHub Actions** (`.github/workflows/validate.yml`) af
 
 > All work in this repository is my own except where cited.
 >
-> — **Roshan Marathe** · Student ID `YOUR-STUDENT-ID` · Set C
+> — **Roshan Marathe** · Student ID `10258` · Set C
 
 <div align="center">
 
