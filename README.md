@@ -1,10 +1,11 @@
 <div align="center">
 
-# 🎓 Training Performance Analysis
-### Data Analysis Practical Exam · **Set C** · Red & White Skill Education
+<img src="assets/hero.svg" alt="Training Performance Analysis — Data Analysis Practical Exam, Set C, by Roshan Marathe" width="100%">
 
-*Which course needs the most academic support — and how does performance differ across batches?*
+<br>
 
+[![validate](https://github.com/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID/actions/workflows/validate.yml/badge.svg)](https://github.com/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID/actions/workflows/validate.yml)
+![Last commit](https://img.shields.io/github/last-commit/YOUR-GITHUB-USERNAME/data-analysis-set-c-YOUR-STUDENT-ID?label=last%20commit&color=ff4d5a)
 ![Excel](https://img.shields.io/badge/Excel-XLOOKUP%20%7C%20PivotTable-217346?logo=microsoftexcel&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-9.6.0-4479A1?logo=mysql&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-pandas%20%7C%20matplotlib-3776AB?logo=python&logoColor=white)
@@ -12,17 +13,21 @@
 ![Data](https://img.shields.io/badge/records-12%20clean%20(13%20raw)-blue)
 ![Reconciled](https://img.shields.io/badge/cross--tool%20reconciliation-passed-brightgreen)
 
+*Which course needs the most academic support — and how does performance differ across batches?*
+
 </div>
 
 | | |
 |---|---|
-| **Student name** | Roshan Marathe |
-| **Student ID** | `10258` |
+| **Author** | **Roshan Marathe** |
+| **Student ID** | `YOUR-STUDENT-ID` |
 | **Assigned set** | **Set C** — Training Performance Analysis |
-| **Repository** | `data-analysis-set-c-10258` |
-| **Video walkthrough** | [`VIDEO_URL`](https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view?usp=sharing) · duration `12 min` |
+| **Repository** | `data-analysis-set-c-YOUR-STUDENT-ID` |
+| **Final submitted commit** | `FINAL_COMMIT_HASH` |
+| **Video walkthrough** | [`VIDEO_URL`](VIDEO_URL) · duration `MM:SS` |
+| **Live status** | CI badge above re-runs the notebook and validates all results on every push |
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 📑 Table of Contents
 
@@ -37,48 +42,27 @@
 9. [🗄 Module 2 — SQL (MySQL)](#9--module-2--sql-mysql)
 10. [🐍 Module 3 — Python](#10--module-3--python)
 11. [📊 Module 4 — Power BI](#11--module-4--power-bi)
-12. [Findings & Recommendation](#12--findings--recommendation)
-13. [Cross-Tool Reconciliation](#13--cross-tool-reconciliation)
-14. [Video Walkthrough](#14--video-walkthrough)
-15. [Where to Find the Evidence (Marking Map)](#15--where-to-find-the-evidence-marking-map)
-16. [References & Authorship](#16--references--authorship)
+12. [🔬 Insights, Findings & Recommendation](#12--insights-findings--recommendation)
+13. [🔁 Cross-Tool Reconciliation & Automated Validation](#13--cross-tool-reconciliation--automated-validation)
+14. [🎬 Video Walkthrough](#14--video-walkthrough)
+15. [References & Authorship](#references--authorship) *(closing section)*
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 1. 🎯 Executive Summary
 
 A training institute recorded **13 assessment rows** (one is an exact duplicate) across four courses, three batches and three months. The same cleaned dataset (**12 unique records**) was analysed independently in **Excel, MySQL, Python and Power BI**, and every headline number was reconciled across all four tools.
 
-<div align="center">
-
-| 📋 Assessments | 📈 Avg Score | ✅ Pass Rate | 👥 Avg Attendance |
-|:---:|:---:|:---:|:---:|
-| **12** | **61.50** | **66.67 %** (8 of 12) | **81.67 %** |
-
-</div>
+<img src="assets/kpis.svg" alt="KPIs: 12 assessments, average score 61.50, pass rate 66.67% (8 of 12), average attendance 81.67%" width="100%">
 
 > [!IMPORTANT]
 > **Answer 1 — Course needing the most support: `Python`** — lowest average score (**49.33**) and lowest pass rate (**33.33 %**, 1 of 3 assessments passed). No other course ties for the lowest value.
 >
 > **Answer 2 — Batch differences: `Evening` performs best (67.00), `Weekend` worst (56.25)** — a **10.75-point gap**. Weekend is also the only batch with a 50.00 % pass rate and the lowest attendance (75.75 %).
 
-```mermaid
-flowchart LR
-    A["assessments.csv<br/>13 rows"] --> C["Remove 1 exact duplicate<br/>→ 12 unique rows"]
-    B["courses.csv<br/>4 rows"] --> D["Join on course_id<br/>(1 course → many assessments)"]
-    C --> D
-    D --> E1["📗 Excel"]
-    D --> E2["🗄 MySQL"]
-    D --> E3["🐍 Python"]
-    D --> E4["📊 Power BI"]
-    E1 --> F["✅ Cross-tool reconciliation"]
-    E2 --> F
-    E3 --> F
-    E4 --> F
-    F --> G["📌 Findings & recommendation"]
-```
+<img src="assets/pipeline.svg" alt="Pipeline: two CSVs cleaned and joined, analysed in Excel, MySQL, Python and Power BI, reconciled, then turned into insights" width="100%">
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 2. 🧭 Business Objective & Questions
 
@@ -88,6 +72,8 @@ flowchart LR
 |:-:|---|---|---|
 | **Q1** | Which course needs the most academic support? | **Python** (Technology) | Lowest avg score **49.33** & lowest pass rate **33.33 %** (1/3) — [§10](#10--module-3--python), [§9 S2b](#s2b--underperforming-courses) |
 | **Q2** | How does performance differ across batches? | **Evening 67.00 › Morning 61.25 › Weekend 56.25** | [§9 S2c](#s2c--top-two-batches-by-average-score), [§11](#11--module-4--power-bi) slicer test |
+
+<img src="assets/charts.svg" alt="Average score by course and by batch" width="100%">
 
 ### Course ranking — *most support needed first*
 
@@ -108,7 +94,7 @@ flowchart LR
 
 *Bars are scaled 1 block = 4 score points. Pass rates are computed from underlying counts (passed ÷ total), never by averaging subgroup percentages.*
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 3. 🗂 Dataset & Data Dictionary
 
@@ -177,7 +163,7 @@ erDiagram
 | Scores / attendance on 0–100 scale | ✅ |
 | Month order | Jan → Feb → Mar preserved in every pivot and chart |
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 4. 🧹 Cleaning Steps & Metric Definitions
 
@@ -208,48 +194,53 @@ erDiagram
 | **Rounding** | All reported figures use two decimals; rates are calculated from counts, then rounded for display only |
 | **Ties** | Highest/lowest results report *all* tied entities — no ties occurred for lowest course (Python) or top batch (Evening) |
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 5. 📁 Repository Structure
 
 ```text
-data-analysis-set-c-10258/
-├── README.md                       
-├── requirements.txt                 
-├── .gitignore                        
+data-analysis-set-c-YOUR-STUDENT-ID/
+├── README.md                         ← you are here
+├── requirements.txt                  ← Python packages
+├── .gitignore                        ← excludes envs, caches, credentials, Office lock files
 │
 ├── data/
 │   └── raw/
-│       ├── assessments.csv        
-│       └── courses.csv               
+│       ├── assessments.csv           ← supplied fact file (13 rows incl. 1 duplicate)
+│       └── courses.csv               ← supplied lookup file (4 rows)
 │
 ├── excel/
-│   └── analysis.xlsx                 
-├
+│   └── analysis.xlsx                 ← Raw · Lookup · Clean · Summary (live formulas + PivotTable)
+│
 ├── sql/
-│   ├── setup.sql                     
-│   └── queries.sql                   
+│   ├── setup.sql                     ← schema + load of 12 fact / 4 lookup rows (run FIRST)
+│   └── queries.sql                   ← S2a · S2b · S2c · S3 (+ S3b, R1 extras) (run SECOND)
 │
 ├── python/
-│   └── analysis.ipynb                
+│   └── analysis.ipynb                ← clean → merge → derive → summarise → chart → export
 │
 ├── powerbi/
-│   └── dashboard.pbix                
+│   └── dashboard.pbix                ← Power Query · model · 3 DAX measures · 1 report page
 │
-└── outputs/
-    ├── clean_data.csv               
-    ├── python_summary.csv           
-    ├── python_chart.png             
-    ├── powerbi_dashboard.png        
-    ├── sql/      
-    │   ├── s2a_avg_score_by_department.csv
-    │   ├── s2b_underperforming_courses.csv
-    │   ├── s2c_top_two_batches_by_avg_score.csv
-    │   ├── s3_data_integrity_check.csv
-    │   ├── s3b_orphan_fact_keys_check.csv
-    │   └── r1_overall_pass_rate_reconciliation.csv     
+├── outputs/
+│   ├── clean_data.csv                ← merged 12-row clean dataset (Python)
+│   ├── python_summary.csv            ← department pass-rate summary (Python)
+│   ├── python_chart.png              ← monthly average score chart (Python)
+│   ├── powerbi_dashboard.png         ← unfiltered report page screenshot (Power BI)
+│   ├── sql/                          ← saved results of every query (S2a, S2b, S2c, S3, S3b, R1)
+│   └── screenshots/                  ← Excel & Power BI evidence images used in this README
+│
+├── tests/
+│   └── validate_results.py           ← 22 automated cross-tool checks against the raw data
+│
+├── assets/                           ← hand-built animated SVGs used in this README
+│   └── hero · kpis · pipeline · charts · trend · scatter · reconcile · module-* · divider
+│
+└── .github/workflows/
+    └── validate.yml                  ← CI: re-runs the notebook + validation on every push
+```
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 6. 🛠 Tools & Versions
 
@@ -260,6 +251,8 @@ data-analysis-set-c-10258/
 | **SQL engine** | **MySQL 9.6.0** (dialect and version also stated at the top of `setup.sql` and `queries.sql`) |
 | **Python** | 3.13.5 (Anaconda base environment) |
 | **Python packages** | `pandas`, `numpy`, `matplotlib`, `jupyterlab` — see [`requirements.txt`](requirements.txt) |
+| **Automation** | GitHub Actions (`.github/workflows/validate.yml`) — notebook re-run + `tests/validate_results.py` |
+| **Visual assets** | Hand-built animated SVGs in `assets/` — render natively on GitHub, no external services |
 | **Version control** | Git / GitHub |
 | **Video** | Screen + webcam recording (hosted link in the header table) |
 
@@ -269,7 +262,7 @@ Print your own package versions any time:
 python -c "import pandas, numpy, matplotlib; print(pandas.__version__, numpy.__version__, matplotlib.__version__)"
 ```
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 7. ⚡ Quick Start — Reproduce Everything
 
@@ -287,7 +280,10 @@ mysql -u root -p < sql/queries.sql
 # 2 · Python
 python -m venv .venv && source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-jupyter nbconvert --to notebook --execute --inplace python/analysis.ipynb
+jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.kernel_name=python3 python/analysis.ipynb
+
+# 3 · Validate every number against the raw data (22 checks)
+python tests/validate_results.py
 ```
 
 | Module | Open this file | Notes |
@@ -297,12 +293,25 @@ jupyter nbconvert --to notebook --execute --inplace python/analysis.ipynb
 | 🐍 Python | `python/analysis.ipynb` | Works from repo root **or** from `python/`; details in [§10](#10--module-3--python) |
 | 📊 Power BI | `powerbi/dashboard.pbix` | **Update the two CSV paths after cloning** — [§11](#data-source--refresh-instructions--after-cloning) |
 
----
+<details>
+<summary><strong>🧰 Troubleshooting</strong></summary>
+
+| Symptom | Fix |
+|---|---|
+| MySQL `ERROR 1215: Cannot add foreign key constraint` | Run **`setup.sql` first** — it creates `courses` before `assessments`. Never run `queries.sql` on an empty database. |
+| `No such kernel named conda-base-py` | Add `--ExecutePreprocessor.kernel_name=python3` (as above) or pick any Python 3 kernel in Jupyter. |
+| `FileNotFoundError: data/raw/assessments.csv` | Start the notebook from the repo root (or from `python/`) and keep the `data/raw/` folder where it is. |
+| Power BI: *DataSource.Error – could not find file* | Re-point **both** CSV sources — [refresh steps](#data-source--refresh-instructions--after-cloning). |
+| Excel shows `#NAME?` for `XLOOKUP` | Needs Excel 2021 / Microsoft 365; the `INDEX/MATCH` equivalent returns the same result. |
+| Animations look static | GitHub plays the SVG animations in the browser; some previewers (e-mail, IDE panes) show a still frame. |
+
+</details>
+
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 8. 📗 Module 1 — Excel
 
-<img width="852" height="734" alt="Screenshot 2026-10-10 134743" src="https://github.com/user-attachments/assets/0d856fa1-0291-42d7-a1f2-9496e35b5445" />
-
+<img src="assets/module-excel.svg" alt="Module 1 — Excel" width="100%">
 
 **File:** [`excel/analysis.xlsx`](excel/analysis.xlsx) · all calculations are **live formulas**; the PivotTable and chart are editable (no screenshots-only deliverables).
 
@@ -370,13 +379,15 @@ jupyter nbconvert --to notebook --execute --inplace python/analysis.ipynb
   <img src="outputs/screenshots/excel_03_summary_pivot_chart.png" width="900" alt="Excel Summary sheet with COUNTIFS table, PivotTable and column chart">
 </p>
 <p align="center"><em>Figure 8.3 — Summary sheet: COUNTIFS table, PivotTable and chart.</em></p>
-<img width="852" height="734" alt="Screenshot 2026-10-10 134743" src="https://github.com/user-attachments/assets/8b959f5c-b5d0-4542-8b9c-2000fbb73321" />
+<!-- 📸 SCREENSHOT → save as outputs/screenshots/excel_03_summary_pivot_chart.png -->
 
 **Excel takeaways:** Business outscores Technology in every month; both departments improve from January to March; the overall monthly average rises **55.00 → 62.75 → 66.75**.
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 9. 🗄 Module 2 — SQL (MySQL)
+
+<img src="assets/module-sql.svg" alt="Module 2 — SQL on MySQL 9.6" width="100%">
 
 | Item | Value |
 |---|---|
@@ -498,13 +509,15 @@ WHERE a.course_id IS NULL;
 | Query | Purpose | Result |
 |---|---|---|
 | **S3b** — `assessments LEFT JOIN courses … WHERE c.course_id IS NULL` | Direction the brief cares about: any fact `course_id` **without** a lookup row? | **0 rows** ✅ |
-| **R1** — `COUNT(*)`, `SUM(score >= 50)`, `ROUND(100.0 * SUM(score >= 50) / COUNT(*), 2)` | Overall pass rate for the [reconciliation](#13--cross-tool-reconciliation) | `12 · 8 · 66.67` ✅ |
+| **R1** — `COUNT(*)`, `SUM(score >= 50)`, `ROUND(100.0 * SUM(score >= 50) / COUNT(*), 2)` | Overall pass rate for the [reconciliation](#13--cross-tool-reconciliation--automated-validation) | `12 · 8 · 66.67` ✅ |
 
 </details>
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 10. 🐍 Module 3 — Python
+
+<img src="assets/module-python.svg" alt="Module 3 — Python" width="100%">
 
 **File:** [`python/analysis.ipynb`](python/analysis.ipynb) — pandas + matplotlib. All paths are **relative to the repository root** (the first cell switches into the root automatically if the notebook is launched from `python/`).
 
@@ -516,7 +529,7 @@ pip install -r requirements.txt
 
 jupyter lab python/analysis.ipynb                      # Kernel ▸ Restart & Run All
 # …or headless, from the repo root:
-jupyter nbconvert --to notebook --execute --inplace python/analysis.ipynb
+jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.kernel_name=python3 python/analysis.ipynb
 ```
 
 ### Pipeline
@@ -576,14 +589,13 @@ Total assessments: 3
 | [`outputs/python_summary.csv`](outputs/python_summary.csv) | Department count / passed / pass-rate summary | 2 |
 | [`outputs/python_chart.png`](outputs/python_chart.png) | Labeled monthly average-score chart | — |
 
-A final helper cell prints `Business 67.00 · Technology 56.00` (average score by department) and `Overall pass rate: 8 / 12 = 66.67%` for the [reconciliation](#13--cross-tool-reconciliation). The committed notebook contains **all executed outputs**.
+A final helper cell prints `Business 67.00 · Technology 56.00` (average score by department) and `Overall pass rate: 8 / 12 = 66.67%` for the [reconciliation](#13--cross-tool-reconciliation--automated-validation). The committed notebook contains **all executed outputs**.
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 11. 📊 Module 4 — Power BI
 
-<img width="1323" height="810" alt="Screenshot 2026-10-10 135047" src="https://github.com/user-attachments/assets/18568c17-6867-4459-86b0-d02bb0d232ab" />
-
+<img src="assets/module-powerbi.svg" alt="Module 4 — Power BI" width="100%">
 
 **File:** [`powerbi/dashboard.pbix`](powerbi/dashboard.pbix) · one report page, **Training Performance Analysis Dashboard** (1920 × 1080).
 
@@ -677,14 +689,14 @@ Selecting a batch re-computes every card and chart. Card values recorded for the
   <img src="outputs/screenshots/powerbi_04_slicer_weekend.png" width="950" alt="Power BI dashboard with the Weekend batch selected">
 </p>
 <p align="center"><em>Figure 11.5 — Filtered state (Weekend): all cards and charts update; filter then cleared to return to the unfiltered view in Figure 11.1.</em></p>
-
+<!-- 📸 SCREENSHOT → save as outputs/screenshots/powerbi_04_slicer_weekend.png -->
 
 ### Findings read from the unfiltered report
 
 1. **Technology averages 56.00 vs Business 67.00** — an 11.00-point gap; pass rate **50.00 % vs 83.33 %**.
 2. **Overall pass rate is 66.67 % (8 of 12)** with an average score of **61.50**; the monthly trend climbs **55.00 → 62.75 → 66.75**.
 
-**Recommendation:** see [§12](#12--findings--recommendation).
+**Recommendation:** see [§12](#12--insights-findings--recommendation).
 
 ### Data source & refresh instructions — *after cloning*
 
@@ -703,9 +715,46 @@ Power BI stores **absolute file paths**, so the two CSV sources must be re-point
 
 *Alternative:* Power Query Editor ▸ select the query ▸ **Advanced Editor** ▸ edit the `File.Contents("…")` path.
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
-## 12. 📌 Findings & Recommendation
+## 12. 🔬 Insights, Findings & Recommendation
+
+### 📈 Insight lab
+
+<img src="assets/trend.svg" alt="Monthly average score by department, January to March" width="100%">
+
+Both departments improve every month, but **Business climbs much faster (+16.50 points) than Technology (+7.00)**, so the department gap widens from 7.00 points in January to 16.50 in March (Technology plateaus at 58.00 → 58.50 between February and March).
+
+<img src="assets/scatter.svg" alt="Scatter plot of attendance versus score" width="100%">
+
+> [!TIP]
+> **Attendance is a clean early-warning signal in this data.** All **4 failing** assessments had attendance **≤ 75 %**, and all **8 passing** assessments had attendance **≥ 80 %** — the two groups do not overlap at all (score–attendance correlation **r = 0.98**, n = 12; descriptive only).
+
+**Course × batch heat-map** — average score per cell (🟩 ≥ 70 · 🟨 50–69 · 🟥 < 50 · — no assessment)
+
+| Course | Morning | Evening | Weekend |
+|---|:-:|:-:|:-:|
+| **Excel** | 🟩 72.00 | 🟩 80.00 | 🟩 90.00 |
+| **PowerBI** | 🟨 60.00 | 🟥 45.00 | 🟨 55.00 |
+| **SQL** | 🟨 56.50 ¹ | 🟩 75.00 | — |
+| **Python** | — | 🟨 68.00 | 🟥 40.00 ¹ |
+
+<sub>¹ average of two assessments; every other cell is a single assessment.</sub>
+
+**The four failing assessments**
+
+| ID | Month | Course | Batch | Score | Attendance |
+|:-:|:-:|---|---|:-:|:-:|
+| 2 | Jan | PowerBI | Evening | 45 | 70 % |
+| 4 | Jan | **Python** | Weekend | 38 | 60 % |
+| 7 | Feb | SQL | Morning | 48 | 75 % |
+| 12 | Mar | **Python** | Weekend | 42 | 65 % |
+
+**Score distribution (n = 12)**
+
+| Mean | Median | Std. dev. | Min | Q1 | Q3 | Max |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 61.50 | 62.50 | 16.33 | 38 | 47.25 | 72.75 | 90 |
 
 ### Two numeric findings
 
@@ -719,19 +768,21 @@ Power BI stores **absolute file paths**, so the two CSV sources must be re-point
 - **Department gap:** Technology **56.00** vs Business **67.00**; Technology's two courses (Python 49.33, SQL 62.67) both sit below Excel (80.67).
 - **Python's problem is concentrated in the Weekend batch:** both Weekend Python assessments failed (**38** and **42**, mean **40.00**), while the Evening Python assessment passed (**68**).
 - **Trend is positive:** the monthly average rises from **55.00** (Jan) to **66.75** (Mar), **+11.75 points**.
-- **Attendance moves with score:** Weekend has the lowest attendance (**75.75 %**) and Evening the highest (**86.25 %**); across the 12 records the score–attendance correlation is **r ≈ 0.98** *(descriptive only — see limitation)*.
+- **Attendance tracks performance:** Weekend has the lowest attendance (**75.75 %**) and Evening the highest (**86.25 %**) — the same order as their scores.
 
 ### ✅ Recommendation
 
-> **Prioritise academic support for Python, starting with the Weekend batch.** Add structured practice/mentoring sessions and attendance follow-up for Weekend Python learners — both Weekend Python results were failures, with low attendance (60 % and 65 %). Review **PowerBI (avg 53.33)** as the second priority; **Excel (avg 80.67, 100 % pass)** needs no intervention and can serve as the benchmark course.
+> **Prioritise academic support for Python, starting with the Weekend batch.** Add structured practice/mentoring sessions and attendance follow-up for Weekend Python learners — both Weekend Python results were failures, with low attendance (60 % and 65 %). Use **attendance below 80 %** as an early-warning trigger for outreach before the next assessment. Review **PowerBI (avg 53.33)** as the second priority; **Excel (avg 80.67, 100 % pass)** needs no intervention and can serve as the benchmark course.
 
 ### ⚠️ Limitation
 
-The dataset is **synthetic and tiny (12 records, 3 per course)** and each course–batch combination has at most **one** assessment, so a *course* effect cannot be separated from a *batch* effect. Each row is an independent assessment (not a student's journey), so the results show **where to look**, not **why** — and the attendance relationship is correlation, not causation. Confirm with a larger, student-level dataset before committing resources.
+The dataset is **synthetic and tiny (12 records, 3 per course)** and each course–batch combination has at most **one** assessment (two for SQL-Morning and Python-Weekend), so a *course* effect cannot be separated from a *batch* effect. Each row is an independent assessment (not a student's journey), so the results show **where to look**, not **why** — and the attendance relationship is correlation, not causation. Confirm with a larger, student-level dataset before committing resources.
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
-## 13. 🔁 Cross-Tool Reconciliation
+## 13. 🔁 Cross-Tool Reconciliation & Automated Validation
+
+<img src="assets/reconcile.svg" alt="Technology average score is 56.00 in Excel, MySQL, Python and Power BI" width="100%">
 
 Every aggregate below was computed independently in each tool and **matches exactly**.
 
@@ -766,14 +817,34 @@ Every aggregate below was computed independently in each tool and **matches exac
 - **Power BI** `Pass Rate` is a decimal (`0.6667`) formatted as **66.67 %**; `Avg Score` is displayed to two decimals.
 - **No rounding differences** affect any reconciled value.
 
----
+### 🤖 Automated validation
+
+`tests/validate_results.py` recomputes every headline number **straight from `data/raw/`** and compares it with the files each tool produced — so the reconciliation above is re-checked by code, not by eye.
+
+| Check group | Checks | What is verified |
+|---|:-:|---|
+| Raw data & cleaning | 5 | 13 raw rows · exactly 1 duplicate · 4 lookup rows · 12 clean rows · 0 unmatched `course_id` |
+| Python exports | 4 | `clean_data.csv` (12 rows, `pass_flag` rule) · `python_summary.csv` (Business 5/6, Technology 3/6) |
+| SQL outputs | 10 | S2a values & order · S2b set & values · S2c top-two · S3 / S3b empty · R1 overall pass rate |
+| Excel workbook | 3 | Sheets present · `COUNTIFS` = 3 / 3 / 2 · PivotTable Technology total 56.00 *(skipped if the file is absent)* |
+| **Total** | **22** | |
+
+```bash
+python tests/validate_results.py
+# …
+# 22/22 checks passed
+```
+
+The same script runs in **GitHub Actions** (`.github/workflows/validate.yml`) after the notebook is re-executed headlessly on a clean Ubuntu runner on **every push** — the **validate** badge at the top of this README is its live result. Power BI is a binary file and cannot be tested in CI, so it is reconciled manually in tables A–C above.
+
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
 ## 14. 🎬 Video Walkthrough
 
 | Item | Value |
 |---|---|
-| **Video URL** | [`VIDEO_URL`](https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view?usp=sharing)) *(unlisted YouTube / Google Drive "Anyone with the link can view" — tested in a signed-out window)* |
-| **Duration** | *(12-13 minutes required)* |
+| **Video URL** | [`VIDEO_URL`](VIDEO_URL) *(unlisted YouTube / Google Drive "Anyone with the link can view" — tested in a signed-out window)* |
+| **Duration** | `MM:SS` *(5–10 minutes required)* |
 | **Format** | Webcam overlay + screen recording, face visible throughout |
 
 **Walkthrough outline**
@@ -788,15 +859,23 @@ Every aggregate below was computed independently in each tool and **matches exac
 | 6:30 | 📊 Power BI | A DAX measure, batch slicer, reading a card value |
 | 8:30 | Conclusion | Two numeric findings, recommendation, limitation, repo tour |
 
----
+<img src="assets/divider.svg" width="100%" height="10" alt="">
 
+## References & Authorship
 
+**References**
+
+- Microsoft Learn — [`XLOOKUP`](https://support.microsoft.com/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929), [`COUNTIFS`](https://support.microsoft.com/office/countifs-function-dda3dc6e-f74e-4aee-88bc-aa8c2a866842), [PivotTables](https://support.microsoft.com/office/overview-of-pivottables-and-pivotcharts-527c8fa3-02c0-445a-a2db-7794676bce96)
+- Microsoft Learn — [DAX reference](https://learn.microsoft.com/dax/) (`DIVIDE`, `CALCULATE`, `COUNTROWS`, `AVERAGE`) and [Power Query M](https://learn.microsoft.com/powerquery-m/)
+- MySQL 9.x Reference Manual — [`JOIN`](https://dev.mysql.com/doc/refman/9.0/en/join.html), [`GROUP BY` / `HAVING`](https://dev.mysql.com/doc/refman/9.0/en/group-by-handling.html)
+- pandas documentation — [`merge`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html), [`drop_duplicates`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html), [`groupby`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html)
+- AI assistance: README drafting and formatting support from Claude (Anthropic).
 
 **Authorship declaration**
 
 > All work in this repository is my own except where cited.
 >
-> — Roshan Marathe · Student ID `10258 · Set C
+> — **Roshan Marathe** · Student ID `YOUR-STUDENT-ID` · Set C
 
 <div align="center">
 
