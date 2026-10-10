@@ -213,43 +213,41 @@ erDiagram
 ## 5. 📁 Repository Structure
 
 ```text
-data-analysis-set-c-YOUR-STUDENT-ID/
-├── README.md                         ← you are here
-├── requirements.txt                  ← Python packages
-├── .gitignore                        ← excludes envs, caches, credentials, Office lock files
+data-analysis-set-c-10258/
+├── README.md                       
+├── requirements.txt                 
+├── .gitignore                        
 │
 ├── data/
 │   └── raw/
-│       ├── assessments.csv           ← supplied fact file (13 rows incl. 1 duplicate)
-│       └── courses.csv               ← supplied lookup file (4 rows)
+│       ├── assessments.csv        
+│       └── courses.csv               
 │
 ├── excel/
-│   └── analysis.xlsx                 ← Raw · Lookup · Clean · Summary (live formulas + PivotTable)
-│
+│   └── analysis.xlsx                 
+├
 ├── sql/
-│   ├── setup.sql                     ← schema + load of 12 fact / 4 lookup rows (run FIRST)
-│   └── queries.sql                   ← S2a · S2b · S2c · S3 (+ S3b, R1 extras) (run SECOND)
+│   ├── setup.sql                     
+│   └── queries.sql                   
 │
 ├── python/
-│   └── analysis.ipynb                ← clean → merge → derive → summarise → chart → export
+│   └── analysis.ipynb                
 │
 ├── powerbi/
-│   └── dashboard.pbix                ← Power Query · model · 3 DAX measures · 1 report page
+│   └── dashboard.pbix                
 │
 └── outputs/
-    ├── clean_data.csv                ← merged 12-row clean dataset (Python)
-    ├── python_summary.csv            ← department pass-rate summary (Python)
-    ├── python_chart.png              ← monthly average score chart (Python)
-    ├── powerbi_dashboard.png         ← unfiltered report page screenshot (Power BI)
-    ├── sql/                          ← saved results of every query
+    ├── clean_data.csv               
+    ├── python_summary.csv           
+    ├── python_chart.png             
+    ├── powerbi_dashboard.png        
+    ├── sql/      
     │   ├── s2a_avg_score_by_department.csv
     │   ├── s2b_underperforming_courses.csv
     │   ├── s2c_top_two_batches_by_avg_score.csv
     │   ├── s3_data_integrity_check.csv
     │   ├── s3b_orphan_fact_keys_check.csv
-    │   └── r1_overall_pass_rate_reconciliation.csv
-    └── screenshots/                  ← Excel & Power BI evidence images used in this README
-```
+    │   └── r1_overall_pass_rate_reconciliation.csv     
 
 ---
 
@@ -302,6 +300,9 @@ jupyter nbconvert --to notebook --execute --inplace python/analysis.ipynb
 ---
 
 ## 8. 📗 Module 1 — Excel
+
+<img width="852" height="734" alt="Screenshot 2026-10-10 134743" src="https://github.com/user-attachments/assets/0d856fa1-0291-42d7-a1f2-9496e35b5445" />
+
 
 **File:** [`excel/analysis.xlsx`](excel/analysis.xlsx) · all calculations are **live formulas**; the PivotTable and chart are editable (no screenshots-only deliverables).
 
@@ -369,7 +370,7 @@ jupyter nbconvert --to notebook --execute --inplace python/analysis.ipynb
   <img src="outputs/screenshots/excel_03_summary_pivot_chart.png" width="900" alt="Excel Summary sheet with COUNTIFS table, PivotTable and column chart">
 </p>
 <p align="center"><em>Figure 8.3 — Summary sheet: COUNTIFS table, PivotTable and chart.</em></p>
-<!-- 📸 SCREENSHOT → save as outputs/screenshots/excel_03_summary_pivot_chart.png -->
+<img width="852" height="734" alt="Screenshot 2026-10-10 134743" src="https://github.com/user-attachments/assets/8b959f5c-b5d0-4542-8b9c-2000fbb73321" />
 
 **Excel takeaways:** Business outscores Technology in every month; both departments improve from January to March; the overall monthly average rises **55.00 → 62.75 → 66.75**.
 
@@ -581,6 +582,9 @@ A final helper cell prints `Business 67.00 · Technology 56.00` (average score b
 
 ## 11. 📊 Module 4 — Power BI
 
+<img width="1323" height="810" alt="Screenshot 2026-10-10 135047" src="https://github.com/user-attachments/assets/18568c17-6867-4459-86b0-d02bb0d232ab" />
+
+
 **File:** [`powerbi/dashboard.pbix`](powerbi/dashboard.pbix) · one report page, **Training Performance Analysis Dashboard** (1920 × 1080).
 
 <p align="center">
@@ -673,7 +677,7 @@ Selecting a batch re-computes every card and chart. Card values recorded for the
   <img src="outputs/screenshots/powerbi_04_slicer_weekend.png" width="950" alt="Power BI dashboard with the Weekend batch selected">
 </p>
 <p align="center"><em>Figure 11.5 — Filtered state (Weekend): all cards and charts update; filter then cleared to return to the unfiltered view in Figure 11.1.</em></p>
-<!-- 📸 SCREENSHOT → save as outputs/screenshots/powerbi_04_slicer_weekend.png -->
+
 
 ### Findings read from the unfiltered report
 
@@ -786,43 +790,13 @@ Every aggregate below was computed independently in each tool and **matches exac
 
 ---
 
-## 15. 🧾 Where to Find the Evidence (Marking Map)
 
-| Criterion | Evidence |
-|---|---|
-| **E1** Import & cleaning (2) | `excel/analysis.xlsx` → `Raw`, `Lookup`, `Clean` (rows 13 → 12, `XLOOKUP`) — [§8](#8--module-1--excel) |
-| **E2** `pass_flag` & `COUNTIFS` (2) | `Clean!H`, `Summary!A1:B4` — [§8](#e2--derived-field--batch-summary--output) |
-| **E3** PivotTable & chart (2) | `Summary` sheet — [§8](#e3--pivottable--chart--output) |
-| **S1** Schema & load (2) | `sql/setup.sql` — [§9](#s1--table-definitions--data-load) |
-| **S2a–c** Queries (3) | `sql/queries.sql` — [§9](#s2a--average-score-by-department) |
-| **S3** Outputs & integrity (1) | `outputs/sql/`, S3 query, README run order — [§9](#s3--data-integrity-check) |
-| **P1** Load, clean, merge (2) | `python/analysis.ipynb` — [§10](#10--module-3--python) |
-| **P2** `pass_flag` & dept analysis (2) | Course summary + lowest course (**1 of 3**) — [§10](#10--module-3--python) |
-| **P3** Chart & exports (2) | `outputs/python_chart.png`, `clean_data.csv`, `python_summary.csv` |
-| **B1** Power Query & model (2) | [§11](#b1--power-query--data-model) |
-| **B2** DAX measures (3) | [§11](#b2--dax-measures-table-measure) |
-| **B3** Report page & screenshot (2) | `outputs/powerbi_dashboard.png`, [§11](#b3--report-page) |
-| **Video** (15) | [§14](#14--video-walkthrough) |
-| **GitHub** (10) | This repository · [§5 structure](#5--repository-structure) · [§7 run steps](#7--quick-start--reproduce-everything) |
-| **Reconciliation** | [§13](#13--cross-tool-reconciliation) |
-
----
-
-## 16. 📚 References & Authorship
-
-**References**
-
-- Microsoft Learn — [`XLOOKUP`](https://support.microsoft.com/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929), [`COUNTIFS`](https://support.microsoft.com/office/countifs-function-dda3dc6e-f74e-4aee-88bc-aa8c2a866842), [PivotTables](https://support.microsoft.com/office/overview-of-pivottables-and-pivotcharts-527c8fa3-02c0-445a-a2db-7794676bce96)
-- Microsoft Learn — [DAX reference](https://learn.microsoft.com/dax/) (`DIVIDE`, `CALCULATE`, `COUNTROWS`, `AVERAGE`) and [Power Query M](https://learn.microsoft.com/powerquery-m/)
-- MySQL 9.x Reference Manual — [`JOIN`](https://dev.mysql.com/doc/refman/9.0/en/join.html), [`GROUP BY` / `HAVING`](https://dev.mysql.com/doc/refman/9.0/en/group-by-handling.html)
-- pandas documentation — [`merge`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html), [`drop_duplicates`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html), [`groupby`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html)
-- AI assistance: README drafting and formatting support from Claude (Anthropic).
 
 **Authorship declaration**
 
 > All work in this repository is my own except where cited.
 >
-> — Rudra · Student ID `YOUR-STUDENT-ID` · Set C
+> — Roshan Marathe · Student ID `10258 · Set C
 
 <div align="center">
 
