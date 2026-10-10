@@ -20,7 +20,7 @@
 | **Student ID** | `10258` |
 | **Assigned set** | **Set C** — Training Performance Analysis |
 | **Repository** | `data-analysis-set-c-10258` |
-| **Video walkthrough** | [`VIDEO_URL`](VIDEO_URL) · duration `MM:SS` |
+| **Video walkthrough** | [`VIDEO_URL`](https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view?usp=sharing) · duration `12 min` |
 
 ---
 
@@ -772,8 +772,8 @@ Every aggregate below was computed independently in each tool and **matches exac
 
 | Item | Value |
 |---|---|
-| **Video URL** | [`VIDEO_URL`](VIDEO_URL) *(unlisted YouTube / Google Drive "Anyone with the link can view" — tested in a signed-out window)* |
-| **Duration** | `MM:SS` *(5–10 minutes required)* |
+| **Video URL** | [`VIDEO_URL`](https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view?usp=sharing)) *(unlisted YouTube / Google Drive "Anyone with the link can view" — tested in a signed-out window)* |
+| **Duration** | *(12-13 minutes required)* |
 | **Format** | Webcam overlay + screen recording, face visible throughout |
 
 **Walkthrough outline**
