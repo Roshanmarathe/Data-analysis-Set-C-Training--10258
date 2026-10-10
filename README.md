@@ -15,8 +15,12 @@
 | **Repository** | `data-analysis-set-c-10258` |
 | **Video walkthrough** | ### 📺 Project Demo & Walkthrough (12 min)
 
-[![Watch the Demo](https://img.youtube.com/vi/placeholder/maxresdefault.jpg)](https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view)
-> 💡 *Click the image above to watch the full 12-minute walkthrough on Google Drive.*
+
+### 📺 Project Demo & Walkthrough (12 min)
+
+[![Watch the Demo](https://img.shields.io/badge/▶️-Watch%20Project%20Demo-red?style=for-the-badge)](https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view)
+
+💡 *Click above to watch the full project walkthrough on Google Drive.*
 
 <img src="assets/divider.svg" width="100%" height="10" alt="">
 
@@ -787,8 +791,11 @@ The same script runs in **GitHub Actions** (`.github/workflows/validate.yml`) af
 |---|---|
 | **Video URL** | ### 📺 Project Demo & Walkthrough (12 min)
 
-[![Watch the Demo](https://img.youtube.com/vi/placeholder/maxresdefault.jpg)](https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view)
-> 💡 *Click the image above to watch the full 12-minute walkthrough on Google Drive.*
+
+### 📺 Project Demo & Walkthrough (12 min)
+
+[![Watch the Demo](https://img.shields.io/badge/▶️-Watch%20Project%20Demo-red?style=for-the-badge)](https://drive.google.com/file/d/1qbXsycCnjoE_o8dlS18mCdh8BJyRu9IF/view)
+💡 *Click above to watch the full project walkthrough on Google Drive.*
 | **Duration** | `12 min`|
 | **Format** | Webcam overlay + screen recording, face visible throughout |
 
