@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.code-workspace
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Excel temporary/lock files
+~$*.xlsx
+~$*.xlsm
+~$*.xls
+
+# Power BI temporary, backup, and user-specific files
+*.pbix.tmp
+*.pbit.tmp
+*.pbix.backup
+*.pbit.backup
+*.pbix.user
+*.pbit.user
+
+# Database files produced locally
+*.db
+*.sqlite
+*.sqlite3
+*.bak
+
+# Generated analysis output (keep only intentionally published deliverables)
+outputs/*.tmp
+outputs/*.log
+outputs/*.cache
+
+# Logs
+*.log
+
+# Local scratch work
+work/
+scratch/
+tmp/
